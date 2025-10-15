@@ -1,0 +1,29 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--main);
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.authPromt {
+  font-size: 0.75rem;
+}
+
+input {
+  display: flex;
+  padding-inline: 0.2rem;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  opacity: 0.5;
+  transition: 1s;
+}
+
+input:focus {
+  transform: scale(1.2);
+  opacity: 1;
+}

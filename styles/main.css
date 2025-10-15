@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  font-size: clamp(8px, 1.25vw, 30px);
+  --light: #e0e2db;
+  --main: #b8bdb5;
+  --dark: #757773;
+  --black: #323031;
+  --warning: yellow;
+  --danger: red;
+}
+
+body {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  color: var(--black);
+  background-color: var(--light);
+}
+
+button {
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  background-color: var(--dark);
+  display: flex;
+  padding: 0.2rem 0.5rem;
+  transition: 1s;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  transform: scale(1.1);
+  filter: brightness(1.25);
+}
