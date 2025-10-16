@@ -28,7 +28,7 @@ regBtn.addEventListener("click", async (e) => {
       return;
     }
 
-    const registerResponse = await fetch("/api/users.php", {
+    const registerResponse = await fetch(API_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -43,10 +43,10 @@ regBtn.addEventListener("click", async (e) => {
     const result = await registerResponse.json();
 
     if (registerResponse.status === 200) {
-      alert(result.message || "Registration successfull");
+      alert(result.data.message);
       window.location.href = "/pages/login.php";
     } else {
-      alert(result.msg || "Registration error!");
+      alert(result.error);
     }
 
   } catch (err) {

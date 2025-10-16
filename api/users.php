@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../util/db.php';
 require_once '../util/api_helper.php';
 header('Content-Type: application/json'); // тип возвращаемого ответа - JSON
