@@ -12,5 +12,18 @@
  */
 function check_auth(): bool
 {
-    return !!($_SESSION['uid'] ?? false);
+    return (bool) ($_SESSION['uid'] ?? false);
+}
+
+/**
+ * Checks if the current user has admin privileges.
+ *
+ * This function looks for the 'is_admin' key in the session.
+ * If the key is not set or is falsy, it returns false.
+ *
+ * @return bool True if the user is an admin, false otherwise.
+ */
+function is_admin(): bool
+{
+    return (bool) ($_SESSION['is_admin'] ?? false);
 }

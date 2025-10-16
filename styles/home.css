@@ -4,9 +4,7 @@ h1 {
 
 #exitForm {
   position: absolute;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  bottom: 2rem;
+  bottom: 3rem;
 }
 
 #exitBtn {
@@ -17,4 +15,9 @@ h1 {
 
 #exitBtn:hover {
   filter: brightness(2) opacity(0.8);
+}
+
+#profileForm {
+  position: absolute;
+  top: 3rem;
 }

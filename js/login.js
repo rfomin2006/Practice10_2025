@@ -26,8 +26,12 @@ logBtn.addEventListener("click", async (e) => {
     const result = await response.json();
 
     if (response.status === 200) {
-      alert(result.data.message);
-      window.location.href = "../pages/home.php";
+      if (result.data.is_admin) {
+        window.location.href = "../pages/admin.php";
+      } else {
+        alert(result.data.message);
+        window.location.href = "../pages/home.php";
+      }
     } else {
       alert(result.error);
     }
