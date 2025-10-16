@@ -18,7 +18,6 @@ try {
             $stmt->execute(['id' => $user_id]);
             send_response(200, $stmt->fetch(PDO::FETCH_ASSOC));
             die;
-            break;
         case 'PATCH':
             // update profile
             $fields = [];

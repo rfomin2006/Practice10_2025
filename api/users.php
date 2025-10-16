@@ -57,12 +57,12 @@ try {
                 }
                 // storing id in session
                 $_SESSION['uid'] = $user['id'];
-                $_SESSION['is_admin'] = $user['is_admin'];
+                $_SESSION['is_admin'] = ($user['is_admin'] > 0);
                 send_response(
                     200,
                     [
                         'message' => 'Login successful',
-                        'is_admin' => $user['is_admin']
+                        'is_admin' => ($user['is_admin'] > 0)
                     ]
                 );
                 die;
