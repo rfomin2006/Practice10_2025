@@ -1,6 +1,7 @@
 <?php
 require_once '../util/db.php';
 require_once '../util/api_helper.php';
+header('Content-Type: application/json'); // тип возвращаемого ответа - JSON
 
 // response to OPTIONS and HEAD 200 - OK
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS' || $_SERVER['REQUEST_METHOD'] === 'HEAD') {
@@ -19,7 +20,7 @@ try {
                 $stmt = $pdo->prepare("SELECT id, login, email FROM users WHERE login = :login");
                 $stmt->execute(['login' => $_GET['login']]);
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
-                send_response(200, $user);
+                send_response(200, [$user]);
             } else { // get all users
                 $stmt = $pdo->query("SELECT id, login, email FROM users");
                 send_response(200, $stmt->fetchAll(PDO::FETCH_ASSOC));

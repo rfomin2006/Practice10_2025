@@ -8,13 +8,14 @@
     <title>Document</title>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/forms.css">
+    <script src="../js/register.js" defer></script>
 </head>
 <body>
     <form id="registerForm">
         <h2>Register</h2>
-        <input type="text" name="login" id="login" placeholder="login">
-        <input type="email" name="email" id="email" placeholder="email">
-        <input type="password" name="password" id="password" placeholder="password">
+        <input type="text" name="login" id="login" placeholder="login" required>
+        <input type="email" name="email" id="email" placeholder="email" required`>
+        <input type="password" name="password" id="password" placeholder="password" required>
         <button id="regBtn">Register</button>
         <p class="authPromt">Already have account? <a href="./login.php">Log in</a></p>
     </form>
