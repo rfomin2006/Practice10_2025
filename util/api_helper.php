@@ -1,4 +1,9 @@
-<?php
+<?php header('Content-Type: application/json'); // тип возвращаемого ответа - JSON
+// response to OPTIONS and HEAD 200 - OK
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS' || $_SERVER['REQUEST_METHOD'] === 'HEAD') {
+    http_response_code(200);
+    die;
+}
 
 /**
  * Sends a standardized JSON HTTP response.

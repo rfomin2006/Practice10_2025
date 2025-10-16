@@ -4,37 +4,52 @@ const emailField = document.getElementById("email");
 const passwordField = document.getElementById("password");
 const regBtn = document.getElementById("regBtn");
 
-regBtn.addEventListener("click", (e) => {
+const API_ENDPOINT = "../api/users.php";
+
+regBtn.addEventListener("click", async (e) => {
+  e.preventDefault();
+
   const login = loginField.value;
   const email = emailField.value;
   const password = passwordField.value;
-  e.preventDefault();
-  fetch("../api/users.php", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ login: login }),
-    credentials: "include",
-  })
-    .then((res) => res.json())
-    .then((result) => {
-      if (result.success) {
-        fetch("../api/users.php", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            login: login,
-            email: email,
-            password: password,
-          }),
-          credentials: "include",
-        });
-      } else {
-        console.error("Ошибка регистрации:", result.message);
+
+  try {
+    const checkResponse = await fetch(
+      `${API_ENDPOINT}?login=${encodeURIComponent(login)}`,
+      {
+        method: "GET",
+        credentials: "same-origin",
       }
-    })
-    .catch((err) => console.error(err));
+    );
+    const existingUser = await checkResponse.json();
+
+    if (existingUser) {
+      alert("User with this login already exists!");
+      return;
+    }
+
+    const registerResponse = await fetch(API_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "register",
+        login: login,
+        email: email,
+        password: password,
+      }),
+      credentials: "same-origin",
+    });
+
+    const result = await registerResponse.json();
+
+    if (registerResponse.status === 200) {
+      alert(result.data.message);
+      window.location.href = "/pages/login.php";
+    } else {
+      alert(result.error);
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Something went wrong... Try again!");
+  }
 });
