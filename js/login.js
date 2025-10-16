@@ -17,8 +17,8 @@ logBtn.addEventListener("click", async (e) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         action: "login",
-        login,
-        password,
+        login: login,
+        password: password,
       }),
       credentials: "same-origin",
     });

@@ -33,11 +33,11 @@ regBtn.addEventListener("click", async (e) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         action: "register",
-        login,
-        email,
-        password
+        login: login,
+        email: email,
+        password: password,
       }),
-      credentials: "same-origin"
+      credentials: "same-origin",
     });
 
     const result = await registerResponse.json();
@@ -48,7 +48,6 @@ regBtn.addEventListener("click", async (e) => {
     } else {
       alert(result.error);
     }
-
   } catch (err) {
     console.error(err);
     alert("Something went wrong... Try again!");

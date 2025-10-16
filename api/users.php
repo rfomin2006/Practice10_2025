@@ -22,9 +22,11 @@ try {
                 $stmt->execute(['login' => $_GET['login']]);
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 send_response(200, [$user]);
+                die;
             } else { // get all users
                 $stmt = $pdo->query("SELECT id, login, email FROM users");
                 send_response(200, $stmt->fetchAll(PDO::FETCH_ASSOC));
+                die;
             }
             break;
 
@@ -34,6 +36,7 @@ try {
             if ($action === 'register') { // register user
                 if (empty($input['login']) || empty($input['email']) || empty($input['password'])) {
                     send_response(400, msg: 'Missing fields');
+                    die;
                 }
                 $stmt = $pdo->prepare("INSERT INTO users (login, email, password_hash)
                                                         VALUES (:login, :email, :hash)");
@@ -43,6 +46,7 @@ try {
                     'hash' => password_hash($input['password'], PASSWORD_DEFAULT)
                 ]);
                 send_response(200, ['message' => 'User created']);
+                die;
             } else if ($action === 'login') { // login user
                 if (empty($input['login']) || empty($input['password'])) send_response(400, msg: 'Login and pasword required');
                 $login = $input['login'];
@@ -52,21 +56,27 @@ try {
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 if (!$user) {
                     send_response(401, msg: 'User not found');
+                    die;
                 }
                 if (!password_verify($password, $user['password_hash'])) {
                     send_response(401, msg: 'Incorrect password');
+                    die;
                 }
                 // storing id in session
                 $_SESSION['uid'] = $user['id'];
                 send_response(200, ['message' => 'Login successful']);
+                die;
             } else {
                 send_response(400, msg: 'Unknown POST action');
+                die;
             }
             break;
 
         default: // filter other methods
             send_response(405, msg: 'Method not allowed');
+            die;
     }
 } catch (PDOException $e) { // if database error
     send_response(500, msg: $e->getMessage());
+    die;
 }
