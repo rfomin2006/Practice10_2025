@@ -2,21 +2,6 @@ h1 {
   font-size: 5rem;
 }
 
-#exitForm {
-  position: absolute;
-  bottom: 3rem;
-}
-
-#exitBtn {
-  background-color: var(--danger);
-  font-size: 1rem;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-}
-
-#exitBtn:hover {
-  filter: brightness(2) opacity(0.8);
-}
-
 #profileForm {
   position: absolute;
   top: 3rem;
