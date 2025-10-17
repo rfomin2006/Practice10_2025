@@ -23,7 +23,7 @@ regBtn.addEventListener("click", async (e) => {
     );
     const existingUser = await checkResponse.json();
 
-    if (existingUser) {
+    if (existingUser.data && existingUser.data.length && existingUser.data[0]) {
       alert("User with this login already exists!");
       return;
     }
